@@ -161,6 +161,19 @@
   .logo-row{display:flex;justify-content:center;align-items:center;gap:52px;flex-wrap:wrap;}
   .logo-row img{height:46px;width:auto;max-width:170px;object-fit:contain;opacity:.82;transition:opacity .2s ease;}
   .logo-row img:hover{opacity:1;}
+  .logo-marquee{display:none;}
+  @media(max-width:820px){
+    .logo-wall{display:none;}
+    .logo-marquee{display:block;overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);}
+    .logo-track{display:flex;align-items:center;gap:44px;width:max-content;animation:logoScroll 28s linear infinite;}
+    .logo-track img{height:40px;width:auto;max-width:140px;object-fit:contain;opacity:.85;flex:none;}
+    @keyframes logoScroll{from{transform:translateX(0);}to{transform:translateX(calc(-50% - 22px));}}
+  }
+  @media(max-width:820px) and (prefers-reduced-motion:reduce){
+    .logo-marquee{overflow-x:auto;}
+    .logo-track{animation:none;}
+  }
+
 
   .about-teaser .wrap{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center;}
   .about-avatar{
@@ -529,9 +542,22 @@
       <span class="eyebrow">In their words</span>
       <h2>What clients say</h2>
     </div>
-    <div class="quotes">
-      <div class="quote-card"><span class="q">&ldquo;</span><p>TripleZ has been a great asset in growing the outreach of my company &mdash; within a couple of months we saw over 200% increase in our LinkedIn traffic.</p><div class="who">Andr&eacute; Lewis<span>Founder, Literary Engineers</span></div></div>
-      <div class="quote-card"><span class="q">&ldquo;</span><p>It is great to have a reliable recruiter for our business needs. The candidates were fantastic and very professional. We could not be happier with the results!</p><div class="who">Stephen Kincaid<span>Speakeasy Co.</span></div></div>
+    <div class="quote-rotator">
+      <span class="qmark">&ldquo;</span>
+      <div class="quote-slides-wrap" id="quoteRotator">
+      <div class="quote-slide active" data-slide="0">
+        <p class="quote-text">TripleZ has been a great asset in growing the outreach of my company &mdash; within a couple of months we saw over 200% increase in our LinkedIn traffic.</p>
+        <div class="attribution">Andr&eacute; Lewis<span>Founder, Literary Engineers</span></div>
+      </div>
+      <div class="quote-slide" data-slide="1">
+        <p class="quote-text">It is great to have a reliable recruiter for our business needs. The candidates were fantastic and very professional. We could not be happier with the results!</p>
+        <div class="attribution">Stephen Kincaid<span>Speakeasy Co.</span></div>
+      </div>
+      </div>
+      <div class="quote-dots" id="quoteDots">
+        <button class="active" onclick="showQuote(0)" aria-label="Show testimonial 1"></button>
+        <button class="" onclick="showQuote(1)" aria-label="Show testimonial 2"></button>
+        </div>
     </div>
     <div style="margin-top:70px;">
     <div class="logo-wall">
@@ -720,5 +746,30 @@ function sendContact(e){
   return false;
 }
 </script>
+<script>
+(function(){
+  var slides = document.querySelectorAll('#quoteRotator .quote-slide');
+  var dots = document.querySelectorAll('#quoteDots button');
+  var current = 0;
+  var timer;
+  window.showQuote = function(i){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    resetTimer();
+  };
+  function next(){
+    showQuote((current + 1) % slides.length);
+  }
+  function resetTimer(){
+    clearInterval(timer);
+    timer = setInterval(next, 6000);
+  }
+  if(slides.length > 1){ resetTimer(); }
+})();
+</script>
+<script>(function(){var w=document.querySelector('.logo-wall');if(!w)return;var m=document.createElement('div');m.className='logo-marquee';m.setAttribute('aria-hidden','true');var tr=document.createElement('div');tr.className='logo-track';var imgs=w.querySelectorAll('img');for(var k=0;k<2;k++){imgs.forEach(function(i){var c=i.cloneNode();c.alt='';tr.appendChild(c);});}m.appendChild(tr);w.parentNode.insertBefore(m,w.nextSibling);})();</script>
 </body>
 </html>
