@@ -22,5 +22,5 @@ Changes made for launch (Oct 14, 2026): one shared menu on every page, "Design m
 - Contact form (every page) sends to cynthia@triplez.com.co through FormSubmit (formsubmit.co). The first real submission triggers a one-time activation email to Cynthia that she must confirm. It only works on the live site, not in the Claude preview.
 - "Book a call" links to https://calendar.app.google/CwoYRGL3jgAScoQU9
 - The logo and browser icon are now built into each page (copies: triplez_logo.png, favicon.png, apple-touch.png).
-- SEO pass: page descriptions and link previews still to do. Redirects from the 4 known old Wix URLs are in vercel.json (add any others before launch).
+- SEO basics done 2026-10-14: titles, descriptions, canonical URLs, link-preview tags (og-image.png), sitemap.xml, robots.txt, Organization schema on home, client portal set to noindex. Redirects from the 4 known old Wix URLs are in vercel.json (add any others before launch).
 - Hosting: live on Vercel since 2026-10-14 (repo cdiazrueda/triplezwebsite2026, pushes to main deploy). DNS is managed in Wix; move it to GoDaddy before cancelling Wix.
