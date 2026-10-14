@@ -1,9 +1,30 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "",
+  "outputDirectory": ".",
   "cleanUrls": true,
   "redirects": [
-    { "source": "/general-clean", "destination": "/why-colombia", "permanent": true },
-    { "source": "/about-3", "destination": "/about", "permanent": true },
-    { "source": "/blog", "destination": "/knowledge-base", "permanent": true },
-    { "source": "/post/resume-tips", "destination": "/resume-101", "permanent": true }
+    {
+      "source": "/general-clean",
+      "destination": "/why-colombia",
+      "permanent": true
+    },
+    {
+      "source": "/about-3",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/knowledge-base",
+      "permanent": true
+    },
+    {
+      "source": "/post/resume-tips",
+      "destination": "/resume-101",
+      "permanent": true
+    }
   ]
 }
